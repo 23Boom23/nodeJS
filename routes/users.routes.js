@@ -8,6 +8,11 @@ router.get('/', (req, res) => {
     res.send(users)
 })
 
+router.get('/:id', (req, res) => {
+    const user = UsersControllers.getUserById(req.params.id)
+    res.send(user)
+})
+
 
 
 module.exports = router

@@ -9,8 +9,8 @@ class UsersControllers {
         return users
     }
 
-    updateUser(id) {
-       return users.find((item) => item.id === id)
+    getUsersById(id) {
+        return users.find((item) => item.id === id)
     }
 }
 
