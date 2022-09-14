@@ -1,11 +1,12 @@
-
+const UsersService = require('../services/users.service')
 users = {
     id:1,
     name:'Aleksei'
 }
 
 class UsersControllers {
-    getUsers() {
+  async  getUsers() {
+        let users = await UsersService.getUsers()
         return users
     }
 

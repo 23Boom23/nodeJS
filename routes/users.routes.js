@@ -3,8 +3,8 @@ const router = express.Router();
 const UsersControllers = require('../controllers/users.controller');
 // const UsersService = require('../services/users.service');
 
-router.get('/', (req, res) => {
-    const users = UsersControllers.getUsers()
+router.get('/', async (req, res) => {
+    const users = await UsersControllers.getUsers()
     res.send(users)
 })
 
