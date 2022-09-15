@@ -1,11 +1,9 @@
 const UsersService = require('../services/users.service')
-users = {
-    id:1,
-    name:'Aleksei'
-}
+
+
 
 class UsersControllers {
-  async  getUsers() {
+    async getUsers() {
         let users = await UsersService.getUsers()
         return users
     }
@@ -13,6 +11,8 @@ class UsersControllers {
     getUsersById(id) {
         return users.find((item) => item.id === id)
     }
+
+
 }
 
 
