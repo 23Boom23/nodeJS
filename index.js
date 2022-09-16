@@ -13,14 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
 app.use('/api', routes)
 
 // начинаем прослушивание подключений на 3000 порту
 app.listen(port, (() => {
     console.log('---Server restarted---');
 }));
-
-
-
-
