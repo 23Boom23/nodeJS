@@ -26,7 +26,7 @@ router.use(async (req, res, next) => {
  *                      description: Successfull response
  */
 router.get('/', UsersControllers.getUsers)
-router.get('/:id', UsersControllers.getUserById)
+router.get('/user/:id', UsersControllers.getUserById)
 /**
  * @swagger
  * /api/users:
@@ -43,6 +43,6 @@ router.post('/', Validator.validatePost(), UsersControllers.createUser)
 router.put('/:id', Validator.validateParam(), UsersControllers.updateUser)
 router.patch('/:id', UsersControllers.updateParametrOfUser)
 router.delete('/:id', UsersControllers.deleteUser)
-router.get('/:gender', UsersControllers.getUsers)
+router.get('/:gender', UsersControllers.getUserGender)
 
 module.exports = router

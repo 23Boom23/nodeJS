@@ -11,22 +11,37 @@ class UsersService {
         })
       })
     } catch (err) {
-      console.log(err)
+      return err.message
     }
   }
 
-  getUserById() {
+  getUserById(id) {
     try {
       return new Promise((res, rej) => {
         fs.readFile("data.json", (err, data) => {
           if (err) {
             return res(false);
           }
-          return res(JSON.parse(data))
+          return res(id)
         })
       })
     } catch (err) {
-      console.log(err)
+      return err.mesage
+    }
+  }
+
+  getUserGender(gender) {
+    try {
+      return new Promise((res, rej) => {
+        fs.readFile("data.json", (err, data) => {
+          if (err) {
+            return res(false);
+          }
+          return res(gender)
+        })
+      })
+    } catch (err) {
+      return err.mesage
     }
   }
 
@@ -45,6 +60,19 @@ class UsersService {
   }
 
   updateUser(data) {
+    return new Promise((res, rej) => {
+      fs.writeFile(
+        "data.json",
+        JSON.stringify(data),
+        (err, response) => {
+          if (err) return res(false);
+          return res({ message: "User updated" })
+        }
+      )
+    })
+  }
+  
+  updateParametrOfUser(data) {
     return new Promise((res, rej) => {
       fs.writeFile(
         "data.json",
