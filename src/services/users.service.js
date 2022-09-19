@@ -1,5 +1,7 @@
 const fs = require('fs')
+
 class UsersService {
+  
   getUsers() {
     try {
       return new Promise((res, rej) => {
@@ -100,4 +102,3 @@ class UsersService {
 }
 
 module.exports = new UsersService()
-

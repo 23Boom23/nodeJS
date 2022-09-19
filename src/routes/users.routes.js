@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
+
 const UsersControllers = require('../controllers/users.controller');
 const UsersService = require("../services/users.service")
-
 const Validator = require("../utils/validators")
-
 
 router.use(async (req, res, next) => {
     let data = await UsersService.getUsers()

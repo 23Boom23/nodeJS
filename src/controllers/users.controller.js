@@ -1,7 +1,5 @@
 const UsersService = require('../services/users.service')
 
-
-
 class UsersControllers {
     async getUsers(req, res) {
         if (req.query.min && req.query.max) {
@@ -44,8 +42,6 @@ class UsersControllers {
     }
 
     async deleteUser(req, res) {
-        console.log(req.users);
-        console.log();
         delete req.users[ req.params.id ];
         let result = await UsersService.deleteUser(req.users)
         return res.status(200).send(result)
