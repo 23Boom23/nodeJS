@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 // создаем приложение
 const app = express();
 
-const routes = require('./routes/index')
+const routes = require('./src/routes/index')
 
 const port = 3000;
 

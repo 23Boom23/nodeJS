@@ -71,7 +71,7 @@ class UsersService {
       )
     })
   }
-  
+
   updateParametrOfUser(data) {
     return new Promise((res, rej) => {
       fs.writeFile(
@@ -101,30 +101,3 @@ class UsersService {
 
 module.exports = new UsersService()
 
-
-// [
-//     {
-//       "id": 1,
-//       "name": "Pasha",
-//       "isMan": true,
-//       "age": 25
-//     },
-//     {
-//       "id": 2,
-//       "name": "Lesha",
-//       "isMan": true,
-//       "age": 28
-//     },
-//     {
-//       "id": 3,
-//       "name": "Masha",
-//       "isMan": false,
-//       "age": 32
-//     },
-//     {
-//       "id": 4,
-//       "name": "Marina",
-//       "isMan": false,
-//       "age": 51
-//     }
-//   ]

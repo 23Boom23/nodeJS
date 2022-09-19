@@ -13,32 +13,9 @@ router.use(async (req, res, next) => {
         next()
     }
 })
-/**
- * @swagger
- * /api/users:
- * get:
- *          summary: Get all users
- *          description: Returns all users from DB
- *          tags:
- *               - Users
- *          responces:
- *                 '200':
- *                      description: Successfull response
- */
+
 router.get('/', UsersControllers.getUsers)
 router.get('/user/:id', UsersControllers.getUserById)
-/**
- * @swagger
- * /api/users:
- * post:
- *          summary: Create user
- *          description: Returns all users from DB
- *          tags:
- *               - Users
- *          responces:
- *                 '200':
- *                      description: Successfull response
- */
 router.post('/', Validator.validatePost(), UsersControllers.createUser)
 router.put('/:id', Validator.validateParam(), UsersControllers.updateUser)
 router.patch('/:id', UsersControllers.updateParametrOfUser)
