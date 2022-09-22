@@ -21,14 +21,16 @@ class Validator {
   validateSN(requers) {
     return [
       body("instagram")
-      .isLength({min:2, max:16})
-      .withMessage("Введите корректный профиль инстаграмм, начинающийся с @"),
+        .isLength({ min: 2, max: 16 })
+        .matches(
+          /@(?=.{5,64}(?:\s|$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])/gm
+        )
+        .withMessage("Введите корректный профиль Instagram, начинающийся с @"),
       body("telegram")
-      .isLength({min:2, max:16})
-      .withMessage("Введите корректный профиль  телеграмм, начинающийся с @")
-    ]
+        .isLength({ min: 2, max: 16 })
+        .withMessage("Введите корректный профиль Telegram, начинающийся с @"),
+    ];
   }
-
 
   validateParam() {
     return [param("id").isUUID().withMessage("id must be param UUID")]

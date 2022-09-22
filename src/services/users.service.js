@@ -1,7 +1,8 @@
 const fs = require('fs')
+const Sentry = require("@sentry/node");
 
 class UsersService {
-  
+
   getUsers() {
     try {
       return new Promise((res, rej) => {
@@ -13,7 +14,8 @@ class UsersService {
         })
       })
     } catch (err) {
-      return err.message
+      return Sentry.captureException(err);
+
     }
   }
 
@@ -28,7 +30,7 @@ class UsersService {
         })
       })
     } catch (err) {
-      return err.mesage
+      return Sentry.captureException(err);
     }
   }
 
@@ -43,7 +45,7 @@ class UsersService {
         })
       })
     } catch (err) {
-      return err.mesage
+      return Sentry.captureException(err);
     }
   }
 
@@ -53,7 +55,7 @@ class UsersService {
         "data.json",
         JSON.stringify(data),
         (err, response) => {
-          if (err) return res(false);
+          if (err) return Sentry.captureException(err);
 
           return res({ message: "User created" })
         }
@@ -67,7 +69,7 @@ class UsersService {
         "data.json",
         JSON.stringify(data),
         (err, response) => {
-          if (err) return res(false);
+          if (err) return Sentry.captureException(err);
           return res({ message: "User updated" })
         }
       )
@@ -80,7 +82,7 @@ class UsersService {
         "data.json",
         JSON.stringify(data),
         (err, response) => {
-          if (err) return res(false);
+          if (err) return Sentry.captureException(err);
           return res({ message: "User updated" })
         }
       )
@@ -93,7 +95,7 @@ class UsersService {
         "data.json",
         JSON.stringify(data),
         (err, response) => {
-          if (err) return res(false);
+          if (err) return Sentry.captureException(err);
           return res({ message: "User delete" })
         }
       )

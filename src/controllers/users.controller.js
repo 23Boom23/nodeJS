@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const UsersService = require('../services/users.service')
 
 class UsersControllers {
@@ -8,7 +9,7 @@ class UsersControllers {
             return res.send(result);
           }
         if (!(req.query.min && req.query.max)) {
-            return res.send(req.users);
+            return res.status(200).send(req.users);
         }
     }
 
@@ -25,9 +26,18 @@ class UsersControllers {
     }
 
     async createUser(req, res) {
-        req.users[ req.body.id ] = req.body;
-        let result = await UsersService.createUser(req.users)
-        return res.status(200).send(result)
+        const errors = validationResult(req)
+        if(!errors.isEmpty()) {
+            console.log("--Error--");
+            return res.status(400).send({
+                succes: false,
+                errors: errors.array
+            })
+        } else {
+            req.users[ req.body.id ] = req.body;
+            let result = await UsersService.createUser(req.users)
+            return res.status(200).send(result)
+        }
     }
 
     async updateUser(req, res) {
@@ -37,8 +47,10 @@ class UsersControllers {
     }
 
     async updateParametrOfUser(req, res) {
-        let result = await UsersService.updateUser(req.users.map((item) => (item.id == req.params.id ? { ...item, isMan: req.body.isMan, age: req.body.age } : item)))
-        return res.status(200).send(result)
+        req.users = req.users.map((item) =>
+        req.users[req.params.id] ? {...item, isMan: req.body.isMan, age: req.body.age} : item )
+        let result = await UsersService.updateUser(req.users)
+            return res.status(200).send(result)
     }
 
     async deleteUser(req, res) {
